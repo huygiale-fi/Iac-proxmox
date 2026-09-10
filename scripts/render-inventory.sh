@@ -4,7 +4,7 @@ set -euo pipefail
 project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 tf_dir="${project_dir}/terraform"
 inventory="${project_dir}/ansible/inventory.ini"
-private_key="${SSH_PRIVATE_KEY_PATH:-${HOME}/.ssh/id_ed25519}"
+private_key="${SSH_PRIVATE_KEY_PATH:-${HOME}/.ssh/iac}"
 
 outputs="$(terraform -chdir="${tf_dir}" output -json)"
 vm_ip="$(jq -r '.vm.value.ip // empty' <<<"${outputs}")"
