@@ -4,7 +4,7 @@
 *.tfplan
 .terraform.tfstate.lock.info
 .terraform.lock.hcl
-terraform.tfvars
+#terraform.tfvars
 *.auto.tfvars
 *.auto.tfvars.json
 ansible/inventory.ini
