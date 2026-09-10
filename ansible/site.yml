@@ -1,0 +1,44 @@
+---
+- name: Configure the IaC demo web service
+  hosts: iac_demo
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Wait until SSH is ready
+      ansible.builtin.wait_for_connection:
+        timeout: 180
+
+    - name: Gather guest facts after SSH is ready
+      ansible.builtin.setup:
+
+  tasks:
+    - name: Install Nginx and curl
+      ansible.builtin.apt:
+        name:
+          - nginx
+          - curl
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Publish the demo page
+      ansible.builtin.template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload Nginx
+
+    - name: Ensure Nginx is enabled and running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+  handlers:
+    - name: Reload Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded

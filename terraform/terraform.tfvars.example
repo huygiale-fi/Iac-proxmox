@@ -1,0 +1,19 @@
+node_name    = "pve2"
+pool_id      = "Staging"
+datastore_id = "local-zfs"
+bridge       = "vmbr1"
+gateway      = null
+
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+
+create_vm      = true
+vm_template_id = 100
+vm_id          = null
+vm_name        = "iac-demo-vm"
+vm_ipv4_cidr   = "dhcp"
+
+create_lxc           = false
+lxc_template_file_id = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+lxc_id               = null # Set an approved cluster-wide ID, or keep null for automatic allocation.
+lxc_name             = "iac-demo-lxc"
+lxc_ipv4_cidr        = "192.0.2.202/24" # Replace with an unused lab IP.
