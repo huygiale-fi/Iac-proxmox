@@ -1,5 +1,5 @@
 provider "proxmox" {
-  # Endpoint, API token, and TLS mode are read from PROXMOX_VE_* variables.
-  # Random IDs reduce collisions when several demos run concurrently.
+  endpoint      = "https://10.200.101.22:8006/"
+  insecure      = true
   random_vm_ids = true
 }
