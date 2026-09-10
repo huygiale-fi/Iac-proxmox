@@ -38,7 +38,7 @@ resource "proxmox_virtual_environment_vm" "demo" {
 
   initialization {
     datastore_id = var.datastore_id
-    upgrade       = false
+    upgrade      = false
 
     ip_config {
       ipv4 {

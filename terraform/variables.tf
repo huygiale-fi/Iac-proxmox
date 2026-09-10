@@ -96,11 +96,13 @@ variable "create_lxc" {
 }
 
 variable "lxc_template_file_id" {
-  description = "Existing LXC template volume, e.g. local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+  description = "Existing LXC template volume"
   type        = string
+  default     = null
+  nullable    = true
 
   validation {
-    condition     = strcontains(var.lxc_template_file_id, ":vztmpl/")
+    condition     = !var.create_lxc || try(strcontains(var.lxc_template_file_id, ":vztmpl/"), false)
     error_message = "lxc_template_file_id must look like storage:vztmpl/template-file.tar.zst."
   }
 }
