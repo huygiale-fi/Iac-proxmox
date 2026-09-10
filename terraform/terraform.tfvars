@@ -4,7 +4,7 @@ datastore_id = "local-zfs"
 bridge       = "vmbr1"
 gateway      = null
 
-ssh_public_key_path = "~/.ssh/id_ed25519.pub"
+ssh_public_key_path = "~/.ssh/iac.pub"
 
 create_vm      = true
 vm_template_id = 100
